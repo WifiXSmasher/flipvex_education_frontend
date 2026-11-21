@@ -11,5 +11,34 @@
   --color-brand-700: #1d4ed8;
 
   --font-sans: "Inter", sans-serif;
+
+  --color-plum-950: #1E1033;
+  --color-plum-900: #291844;
+  --color-plum-800: #39235C;
+  --color-plum-600: #66499A;
+  --color-gold-400: #F6CA3D;
+  --color-gold-500: #EAB825;
+  --color-surface: #FBF9FC;
+  --color-surface-card: #F3EFF8;
+
+
+
+  --color-background: #FBF9FC;
+  --color-foreground: #1A1228;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #1A1228;
+  --color-primary: #291844;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #F6CA3D;
+  --color-secondary-foreground: #1A1228;
+  --color-tertiary: #66499A;
+  --color-tertiary-foreground: #FFFFFF;
+  --color-accent: #F3EFF8;
+  --color-muted: #EFEAF5;
+  --color-muted-foreground: #6B627A;
+  --color-border: #E8E2F0;
+  --color-input: #DDD5E8;
+  --color-destructive: #DC2626;
+  --font-heading: ui-sans-serif, system-ui, sans-serif;
 }
 
