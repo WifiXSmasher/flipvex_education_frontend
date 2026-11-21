@@ -1,8 +1,8 @@
-import { createBrowserRouter } from 'react-router'
+import { createBrowserRouter, Navigate } from 'react-router'
 
 import PublicLayout from '@/layouts/PublicLayout'
-// import StudentLayout from '@/layouts/StudentLayout'
-// import ProtectedRoute from '@/auth/ProtectedRoute'
+import StudentLayout from '@/layouts/StudentLayout'
+import ProtectedRoute from '@/auth/ProtectedRoute'
 
 import Home from '@/pages/public/Home'
 import Courses from '@/pages/public/Courses'
@@ -14,12 +14,11 @@ import Signup from '@/pages/auth/Signup'
 import ForgotPassword from '@/pages/auth/ForgotPassword'
 import ResetPassword from '@/pages/auth/ResetPassword'
 import GuestRoute from '@/auth/GuestRoute'
-import ProtectedRoute from '@/auth/ProtectedRoute'
 import AdminDashboard from '@/pages/admin/AdminDashboard'
-
-// import Forbidden from '@/pages/auth/Forbidden'
-// import NotFound from '@/pages/auth/NotFound'
-// import StudentDashboard from '@/pages/student/Dashboard'
+import StudentDashboard from '@/pages/student/StudentDashboard'
+import CourseView from '@/pages/student/views/CourseView'
+import AttendanceView from '@/pages/student/views/AttendenceView'
+import NotFound from '@/pages/auth/NotFound'
 
 export const router = createBrowserRouter([
   // Public website: navbar + footer layout
@@ -27,7 +26,7 @@ export const router = createBrowserRouter([
     element: <PublicLayout /> ,
     children:[
       { path: '/', element: <Home /> },
-      { path: '/courses', element: <Courses /> },
+      { path: '/courses/', element: <Courses /> },
       // { path: '/courses/:courseId', element: <CourseDetail /> },
       // { path: '/contact', element: <Contact /> },
     ],
@@ -48,29 +47,29 @@ export const router = createBrowserRouter([
   // { path: '/403', element: <Forbidden /> },
 
   // Role areas: guard first, then layout, then pages
-  // {
-  //   path: '/student',
-  //   element: <ProtectedRoute allowedRoles={['Student']} />,
-  //   children: [
-  //     {
-  //       element: <StudentLayout />,
-  //       children: [
-  //         { path: 'dashboard', element: <StudentDashboard /> },
-  //         // { path: 'assignments', element: <Assignments /> },
-  //       ],
-  //     },
-  //   ],
-  // },
+  {
+    path: '/student',
+    element: <ProtectedRoute allowedRoles={['student', 'Student']} />,
+    children: [
+      {
+        element: <StudentLayout />,
+        children: [
+          { index: true, element: <Navigate to="dashboard" replace /> },
+          { path: 'dashboard', element: <StudentDashboard /> },
+          { path: 'courses', element: <CourseView /> },
+          { path: 'attendance', element: <AttendanceView /> },
+          // { path: 'assignments', element: <Assignments /> },
+        ],
+      },
+    ],
+  },
   // Add /counsellor, /admin, /faculty the same way
 
-  // { path: '*', element: <NotFound /> },
-
-
-
   {
-  element:<ProtectedRoute allowedRoles={['admin', 'Admin']} />,
-  children: [
-    { path: '/admin', element: <AdminDashboard /> },
-  ],
-},
+    element: <ProtectedRoute allowedRoles={['admin', 'Admin']} />,
+    children: [
+      { path: '/admin', element: <AdminDashboard /> },
+    ],
+  },
+  { path: '*', element: <NotFound /> },
 ])

@@ -1,168 +1,159 @@
 import { useState } from 'react'
+import { Link } from 'react-router'
 import {
-  GraduationCap,
-  Mail,
-  Lock,
+  ArrowRight,
   Eye,
   EyeOff,
-  ArrowRight,
-  Award,
-  ChartNoAxesCombined,
-  ShieldCheck,
-  CheckCircle2,
+  GraduationCap,
   Sparkles,
 } from 'lucide-react'
-import { site } from '@/config/site'
 import { useLogin } from '@/hooks/useLogin'
-import SmartLink from '@/components/ui/SmartLink'
 
-const Login = () => {
-  const { values, errors, loading, message, setField, setMessage, submit } = useLogin()
+export default function LoginPage() {
+  const { values, errors, loading, message, setField, submit } = useLogin()
   const [showPassword, setShowPassword] = useState(false)
 
   return (
-    <main className="min-h-screen bg-slate-50 p-3 sm:p-5 lg:p-8">
-      <div className="mx-auto grid min-h-[calc(100vh-24px)] max-w-[1500px] overflow-hidden rounded-[28px] bg-white shadow-2xl shadow-slate-200/70 sm:min-h-[calc(100vh-40px)] lg:grid-cols-[1.08fr_0.92fr]">
-        <section className="relative hidden overflow-hidden bg-gradient-to-br from-indigo-700 via-blue-600 to-sky-400 p-12 text-white lg:flex lg:flex-col lg:justify-between xl:p-16">
-          <div className="absolute -right-32 top-20 h-96 w-96 rounded-full border border-white/10" />
-          <div className="absolute -right-20 top-32 h-72 w-72 rounded-full border border-white/10" />
-          <div className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
-
-          <div className="relative z-10">
-            <a href="/" className="inline-flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-blue-600 shadow-lg">
-                <GraduationCap size={29} />
-              </div>
-              <span className="text-2xl font-extrabold tracking-tight">{site.brand}</span>
-            </a>
+    <div className="min-h-screen bg-[#faf9f7] flex flex-col font-sans text-[#28143f]">
+      {/* Header */}
+      <header className="w-full max-w-[1280px] mx-auto px-6 md:px-10 py-6 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-[#27123d] flex items-center justify-center text-white shadow-sm">
+            <GraduationCap size={20} strokeWidth={2.2} />
           </div>
 
-          <div className="relative z-10 my-12 max-w-xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold backdrop-blur-md">
-              <Sparkles size={14} />
-              YOUR LEARNING JOURNEY STARTS HERE
-            </div>
-
-            <h1 className="mt-8 text-5xl font-extrabold leading-[1.15] tracking-tight xl:text-6xl">
-              Learn better.
-              <br />
-              Grow faster.
-              <br />
-              <span className="text-blue-200">Achieve more.</span>
+          <div>
+            <h1 className="font-bold text-base text-[#27123d] leading-tight tracking-tight">
+              Learnova
             </h1>
-
-            <p className="mt-7 max-w-md text-base leading-8 text-blue-100">
-              Your entire learning experience, connected in one place. Access your courses, track your
-              progress and reach your goals with {site.brand}.
+            <p className="text-[9px] font-semibold tracking-[2px] text-gray-400 uppercase mt-0.5">
+              Academic Studio
             </p>
-
-            <div className="mt-12 max-w-md rounded-2xl border border-white/20 bg-white/10 p-5 shadow-2xl backdrop-blur-xl">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs text-blue-100">Learning overview</p>
-                  <h3 className="mt-1 text-lg font-bold">Your progress</h3>
-                </div>
-                <div className="rounded-xl bg-white/20 p-3">
-                  <ChartNoAxesCombined size={23} />
-                </div>
-              </div>
-
-              <div className="mt-6 grid grid-cols-3 gap-3">
-                {[
-                  ['12', 'Courses'],
-                  ['08', 'Completed'],
-                  ['92%', 'Progress'],
-                ].map(([value, label]) => (
-                  <div key={label} className="rounded-xl bg-white/10 p-3">
-                    <p className="text-xl font-bold">{value}</p>
-                    <p className="mt-1 text-xs text-blue-100">{label}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-5 flex items-center gap-3 rounded-xl bg-white/10 p-3">
-                <div className="rounded-lg bg-white/20 p-2">
-                  <Award size={21} />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold">Keep moving forward!</p>
-                  <p className="mt-1 text-xs text-blue-100">Every lesson takes you closer to success.</p>
-                </div>
-              </div>
-            </div>
           </div>
+        </Link>
+      </header>
 
-          <div className="relative z-10 flex items-center justify-between gap-4 text-xs text-blue-100">
-            <p>© 2026 {site.brand}. All rights reserved.</p>
-            <div className="flex items-center gap-2">
-              <ShieldCheck size={15} />
-              Secure learning environment
-            </div>
-          </div>
-        </section>
+      {/* Main Card Container */}
+      <main className="flex-1 flex items-center justify-center px-4 py-4">
+        <div className="w-full max-w-[1040px] bg-white rounded-[24px] shadow-[0_20px_50px_-15px_rgba(39,18,61,0.08)] border border-gray-100 overflow-hidden grid grid-cols-1 md:grid-cols-2">
+          
+          {/* Left Promotional Panel */}
+          <section className="relative overflow-hidden bg-[#27123d] text-white px-8 py-10 md:px-12 md:py-12 flex flex-col justify-between min-h-[540px]">
+            {/* Subtle Decorative Background Circles */}
+            <div className="absolute -top-14 -right-14 w-52 h-52 rounded-full bg-[#4a3525]/50 pointer-events-none" />
+            <div className="absolute -bottom-24 -left-16 w-56 h-56 rounded-full border-[14px] border-[#4a3525]/45 pointer-events-none" />
 
-        <section className="flex items-center justify-center px-5 py-10 sm:px-12 lg:px-12 xl:px-20">
-          <div className="w-full max-w-md">
-            <a href="/" className="mb-12 flex items-center justify-center gap-2 lg:hidden">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-white">
-                <GraduationCap size={25} />
+            {/* Top Badge */}
+            <div className="relative z-10 flex items-center gap-3.5">
+              <div className="w-10 h-10 bg-[#f6c945] rounded-xl flex items-center justify-center text-[#27123d] shadow-sm">
+                <Sparkles size={19} strokeWidth={2.2} />
               </div>
-              <span className="text-2xl font-extrabold">{site.brand}</span>
-            </a>
-
-            <div>
-              <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-700">
-                <Sparkles size={13} />
-                Welcome to {site.brand}
+              <span className="text-[11px] font-bold tracking-[2px] uppercase text-white/95">
+                Learnova Members
               </span>
-              <h2 className="mt-6 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-                Welcome back!
+            </div>
+
+            {/* Center Headline & Copy */}
+            <div className="relative z-10 my-10">
+              <p className="text-[10px] font-bold tracking-[2.5px] text-white/80 mb-4 uppercase">
+                Welcome back
+              </p>
+
+              <h2 className="text-3xl md:text-[34px] leading-[1.18] font-bold tracking-tight mb-5">
+                Your next milestone is closer than you think.
               </h2>
-              <p className="mt-3 text-sm leading-6 text-slate-500">
-                Sign in to access your personalized learning dashboard.
+
+              <p className="text-[13px] text-purple-200/85 leading-[1.7] max-w-[350px]">
+                Return to focused lessons, thoughtful feedback, and a learning
+                plan built around your ambitions.
               </p>
             </div>
 
-            <form onSubmit={submit} className="mt-8 space-y-5" noValidate>
+            {/* Testimonial Box with Corner Brackets */}
+            <div className="relative z-10 p-5">
+              <span className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#f6c945]/75 rounded-tl-md" />
+              <span className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-[#f6c945]/75 rounded-tr-md" />
+              <span className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-[#f6c945]/75 rounded-bl-md" />
+              <span className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-[#f6c945]/75 rounded-br-md" />
+
+              <div className="flex items-start gap-3.5">
+                <div className="w-8 h-8 rounded-full bg-[#f6c945] text-[#27123d] flex items-center justify-center font-serif font-black text-lg shrink-0 mt-0.5">
+                  “
+                </div>
+                <div>
+                  <p className="text-xs text-purple-100/95 leading-[1.6]">
+                    &ldquo;Learnova gives every study session a clear sense of
+                    direction.&rdquo;
+                  </p>
+                  <p className="text-[9px] font-bold tracking-[1.8px] mt-2.5 text-white/85 uppercase">
+                    Elena Cruz · Product Design Student
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Right Login Form Panel */}
+          <section className="px-8 py-10 md:px-14 md:py-12 flex flex-col justify-center bg-white">
+            
+
+            {/* Form Title */}
+            <div className="mb-7">
+              <h2 className="text-[28px] font-bold text-[#27123d] tracking-tight mb-2">
+                Welcome back
+              </h2>
+              <p className="text-[13px] text-gray-500 leading-relaxed">
+                Sign in to continue your learning journey and see what is next
+                on your path.
+              </p>
+            </div>
+
+            {/* Backend Error Banner */}
+            {message && (
+              <div
+                role="alert"
+                className="mb-4 rounded-xl border border-red-200 bg-red-50 p-3 text-xs text-red-600 font-medium"
+              >
+                {message}
+              </div>
+            )}
+
+            {/* Login Form */}
+            <form onSubmit={submit} className="space-y-4" noValidate>
+              {/* Email Field */}
               <div>
-                <label htmlFor="email" className="mb-2 block text-sm font-semibold text-slate-800">
+                <label
+                  htmlFor="email"
+                  className="block text-xs font-semibold text-[#27123d] mb-2"
+                >
                   Email address
                 </label>
-                <div
-                  className={`flex h-13 items-center gap-3 rounded-xl border bg-white px-4 transition focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-500/10 ${
-                    errors.email ? 'border-red-400' : 'border-slate-200'
-                  }`}
-                >
-                  <Mail size={19} className="shrink-0 text-slate-400" />
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="username"
-                    placeholder="you@example.com"
-                    value={values.email}
-                    onChange={(e) => setField('email', e.target.value)}
-                    className="h-full w-full bg-transparent py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400"
-                    required
-                    aria-invalid={!!errors.email}
-                  />
-
-                </div>
-                {errors.email && <p className="mt-2 text-xs text-red-500">{errors.email}</p>}
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="maya@email.com"
+                  value={values.email}
+                  onChange={(e) => setField('email', e.target.value)}
+                  className={`w-full h-11 px-4 rounded-xl border ${
+                    errors.email ? 'border-red-400 bg-red-50/20' : 'border-gray-200/90 bg-[#fafafa]'
+                  } text-[13px] text-gray-800 placeholder:text-gray-400 outline-none transition focus:bg-white focus:border-[#6b46c1] focus:ring-2 focus:ring-[#6b46c1]/10`}
+                />
+                {errors.email && (
+                  <p className="mt-1.5 text-xs text-red-500 font-medium">{errors.email}</p>
+                )}
               </div>
 
+              {/* Password Field */}
               <div>
-                <div className="mb-2 flex items-center justify-between">
-                  <label htmlFor="password" className="text-sm font-semibold text-slate-800">
-                    Password
-                  </label>
-                </div>
-                <div
-                  className={`flex h-13 items-center gap-3 rounded-xl border bg-white px-4 transition focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-500/10 ${
-                    errors.password ? 'border-red-400' : 'border-slate-200'
-                  }`}
+                <label
+                  htmlFor="password"
+                  className="block text-xs font-semibold text-[#27123d] mb-2"
                 >
-                  <Lock size={19} className="shrink-0 text-slate-400" />
+                  Password
+                </label>
+                <div className="relative">
                   <input
                     id="password"
                     name="password"
@@ -171,84 +162,74 @@ const Login = () => {
                     placeholder="Enter your password"
                     value={values.password}
                     onChange={(e) => setField('password', e.target.value)}
-                    className="h-full w-full min-w-0 bg-transparent py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400"
-                    required
-                    aria-invalid={!!errors.password}
+                    className={`w-full h-11 px-4 pr-11 rounded-xl border ${
+                      errors.password ? 'border-red-400 bg-red-50/20' : 'border-gray-200/90 bg-[#fafafa]'
+                    } text-[13px] text-gray-800 placeholder:text-gray-400 outline-none transition focus:bg-white focus:border-[#6b46c1] focus:ring-2 focus:ring-[#6b46c1]/10`}
                   />
                   <button
                     type="button"
-                    onClick={() => setShowPassword((value) => !value)}
-                    className="shrink-0 text-slate-400 hover:text-blue-600"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#27123d] transition cursor-pointer"
                     aria-label={showPassword ? 'Hide password' : 'Show password'}
                   >
-                    {showPassword ? <EyeOff size={19} /> : <Eye size={19} />}
+                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                   </button>
                 </div>
-                {errors.password && <p className="mt-2 text-xs text-red-500">{errors.password}</p>}
+                {errors.password && (
+                  <p className="mt-1.5 text-xs text-red-500 font-medium">{errors.password}</p>
+                )}
               </div>
 
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <label className="flex cursor-pointer items-center gap-2 text-sm text-slate-600">
+              {/* Remember Me & Forgot Password */}
+              <div className="flex items-center justify-between pt-1 pb-2 text-xs">
+                <label className="flex items-center gap-2 text-gray-500 cursor-pointer select-none">
                   <input
                     type="checkbox"
+                    name="rememberMe"
                     checked={values.rememberMe}
                     onChange={(e) => setField('rememberMe', e.target.checked)}
-                    className="h-4 w-4 accent-blue-600"
+                    className="w-3.5 h-3.5 rounded border-gray-300 accent-[#6b46c1] cursor-pointer"
                   />
                   Remember me
                 </label>
-                <SmartLink
-                  href="/forgot-password"
-                  className="text-sm font-semibold text-blue-600 hover:text-blue-700"
+
+                <Link
+                  to="/forgot-password"
+                  className="font-semibold text-[#6b46c1] hover:underline"
                 >
                   Forgot password?
-                </SmartLink>
+                </Link>
               </div>
 
-              {message && (
-                <div role="alert" className="rounded-xl border border-blue-100 bg-blue-50 p-3 text-sm text-red-500">
-                  {message}
-                </div>
-              )}
-
+              {/* Primary Submit Button */}
               <button
                 type="submit"
                 disabled={loading}
-                className="flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 text-sm font-bold text-white shadow-lg shadow-blue-600/20 transition hover:-translate-y-0.5 hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+                className="w-full h-11 rounded-xl bg-[#f6c945] hover:bg-[#eab932] disabled:opacity-60 disabled:cursor-not-allowed text-[#27123d] font-bold text-[13px] flex items-center justify-center gap-2.5 transition shadow-sm cursor-pointer"
               >
-                {loading ? 'Signing in...' : `Sign In to ${site.brand}`}
-                {!loading && <ArrowRight size={18} />}
+                {loading ? 'Signing in...' : 'Sign in to Learnova'}
+                {!loading && <ArrowRight size={15} strokeWidth={2.5} />}
               </button>
             </form>
 
-            <div className="mt-9 border-t border-slate-100 pt-6">
-              <p className="mb-4 text-center text-sm text-slate-600">
-                Don't have an account?{' '}
-                <SmartLink
-                  href="/signup"
-                  className="font-semibold text-blue-600 hover:text-blue-700"
-                >
-                  Create an account
-                </SmartLink>
-              </p>
-              <div className="flex items-center justify-center gap-2 text-xs text-slate-500">
-                <CheckCircle2 size={15} className="text-green-500" />
-                Your learning space is protected and secure.
-              </div>
-              <div className="mt-6 flex justify-center gap-5 text-xs text-slate-400">
-                <a href="/privacy" className="hover:text-blue-600">Privacy Policy</a>
-                <a href="/terms" className="hover:text-blue-600">Terms of Service</a>
-                <a href="/contact" className="hover:text-blue-600">Help</a>
-              </div>
-              <p className="mt-5 text-center text-xs text-slate-400 lg:hidden">
-                © 2026 {site.brand}. All rights reserved.
-              </p>
-            </div>
-          </div>
-        </section>
-      </div>
-    </main>
+            {/* Bottom Sign-up Link */}
+            <p className="text-center text-xs text-gray-500 mt-6">
+              New here?{' '}
+              <Link
+                to="/signup"
+                className="font-semibold text-[#6b46c1] hover:underline"
+              >
+                Create an account
+              </Link>
+            </p>
+          </section>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="py-6 text-center text-[11px] text-gray-500">
+        © 2026 Learnova · Private, secure learning for every student
+      </footer>
+    </div>
   )
 }
-
-export default Login
