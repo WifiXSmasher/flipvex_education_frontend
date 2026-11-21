@@ -14,8 +14,7 @@ const ORDERING = {
   fee_desc: '-total_fee',
 }
 
-// Backend (snake_case) -> the shape the pages use. If a field name changes in Django,
-// fix it here and no page or hook needs to change.
+// Public catalog normalization
 const normalizeCourse = (c) => ({
   id: c.course_id,
   name: c.course_name,
@@ -31,9 +30,8 @@ const normalizeCourse = (c) => ({
 })
 
 /**
- * GET /api/courses/
- * Query params: search, course_type, learning_mode, ordering, page, page_size
- * Expected response (DRF PageNumberPagination): { count, results: [ ...courses ] }
+ * GET /api/v1/courses/
+ * Public catalog
  */
 export async function fetchCourses({
   search = '',
@@ -51,4 +49,39 @@ export async function fetchCourses({
   const data = USE_MOCK ? await mockFetchCourses(params) : (await api.get('/courses/', { params })).data
 
   return { count: data.count, results: data.results.map(normalizeCourse) }
+}
+
+/**
+ * GET /api/v1/course-categories/
+ * List all categories
+ */
+export async function fetchCategories() {
+  const { data } = await api.get('/course-categories/')
+  return Array.isArray(data) ? data : data?.results ?? []
+}
+
+/**
+ * GET /api/v1/courses/
+ * Admin course list with pagination & search
+ */
+export async function fetchAdminCourses({ search = '', page = 1, pageSize = 50 } = {}) {
+  const params = { page, page_size: pageSize }
+  if (search) params.search = search
+
+  const { data } = await api.get('/courses/', { params })
+  const results = Array.isArray(data) ? data : data?.results ?? []
+  const count = data?.count ?? results.length
+
+  return { count, results }
+}
+
+/**
+ * POST /api/v1/courses/
+ * Create course (supports FormData or plain JSON object)
+ */
+export async function createCourse(payload) {
+  const isFormData = payload instanceof FormData
+  const config = isFormData ? { headers: { 'Content-Type': 'multipart/form-data' } } : {}
+  const { data } = await api.post('/courses/', payload, config)
+  return data
 }
